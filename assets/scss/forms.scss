@@ -1,0 +1,24 @@
+.form-container{
+    margin: auto;
+    // form scss
+    form{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2.5rem;
+        input{
+            padding: 1.5rem;
+            font-size: 1rem;
+            outline : none;
+            &[type=submit]{
+                color: rgb(255, 255, 255);
+                background-color: #009A3E;
+                box-shadow: 0 0 3px #009A3E;
+                border: none;
+                padding: 0.8rem;
+                &:hover{
+                    box-shadow: none;   
+                }
+            }
+        }
+    }
+}
