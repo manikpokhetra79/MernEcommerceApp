@@ -3,14 +3,14 @@ const localStrategy = require('passport-local').Strategy;
 const User = require('../models/users');
 // authentication strategy
 passport.use(new localStrategy({
-    usernameField : 'email',
+    usernameField : 'email'
 },function(email,password,done){
     User.findOne({email : email},function(err,user){
         if (err) { 
             return done(err);
          }
         if (!user || user.password != password) {
-            console.log("Incorrect email || password");
+            console.log("Incorrect E-mail || password");
           return done(null, false);
         }
          // if credentials are valid, provide call with the user that is authenticated
@@ -27,6 +27,10 @@ passport.serializeUser(function(user,done){
 });
 passport.deserializeUser(function(id,done){
     User.findById(id,function(err,user){
+        if(err){
+            console.log("error in finding user");
+            return done(err);
+        }
         done(err, user);
     })
 });
@@ -36,7 +40,7 @@ passport.checkAuthentication= function(req,res,next){
     if(req.isAuthenticated()){
         return res.redirect('/');
     }else{
-        return res.redirect('/login');
+        return res.redirect('/users/login');
     }
     next();
 }

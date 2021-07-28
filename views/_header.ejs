@@ -3,12 +3,17 @@
         <nav>
             <ul id="left-nav">
                 <li>
-                   <a href="/">Home</a> 
+                   <a href="/">EcomApp</a> 
                    <a href="/users">Users</a> 
                 </li>
                 <li id="right-nav">                    
-                     <a href="/users/login">Login</a>
-                    <a href="/users/register">Register</a>                       
+                   <% if(locals.user){%>
+                    <a href="/users"><%=locals.user.name%></a>
+                    <a href="/users/destroy-session">Logout</a>
+                    <%}else{%>
+                    <a href="/users/login">Login</a>
+                    <a href="/users/register">Register</a>
+                    <%}%>                       
                  </li>
             </ul>
         </nav>
